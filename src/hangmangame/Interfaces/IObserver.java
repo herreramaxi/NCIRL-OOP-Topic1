@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hangmangame;
+package hangmangame.Interfaces;
 
 /**
  *
  * @author Maximiliano Herrera
  */
-public enum ResultType {
-    Successful,
-    Failed;  
+public interface IObserver {
+      void update();
 }

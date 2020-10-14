@@ -17,11 +17,8 @@ public class HangmanGameMain {
     public static void main(String[] args) {
 
         GameMediator mediator = new GameMediator();
+        MainJFrame mainFrame = new MainJFrame(mediator);
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainJFrame(mediator).setVisible(true);
-            }
-        });
+        mainFrame.show();
     }
 }

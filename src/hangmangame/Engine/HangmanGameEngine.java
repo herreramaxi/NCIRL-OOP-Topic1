@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hangmangame;
+package hangmangame.Engine;
+
+import hangmangame.Interfaces.IObserver;
+import hangmangame.Interfaces.ISubject;
+import java.util.ArrayList;
 
 /**
  *
  * @author Maximiliano Herrera
  */
-public class HangmanGameEngine {
+public class HangmanGameEngine implements ISubject {
 
     private String _charactersEntered;
     private String _secretWord;
@@ -18,6 +22,7 @@ public class HangmanGameEngine {
     private int _guesses;
     private Boolean _hasGuessedTheWord;
     private Boolean _initialized;
+    private final ArrayList<IObserver> _observers = new ArrayList<>();
 
     public int getLives() {
         return _lives;
@@ -33,6 +38,10 @@ public class HangmanGameEngine {
 
     public String getGuessedWord() {
         return _guessedWord;
+    }
+
+    public boolean getIsGameOver() {
+        return this.getHasGuessedTheWord() || this.getLives() == 0 || this.getGuesses() == 0;
     }
 
     public HangmanGameEngine() {
@@ -61,6 +70,8 @@ public class HangmanGameEngine {
         _guesses = 10;
         _hasGuessedTheWord = false;
         _initialized = true;
+
+        this.Notify();
     }
 
     public GuessResult guessLetter(Character character) {
@@ -95,7 +106,7 @@ public class HangmanGameEngine {
                         sb.setCharAt(i, c);
                     }
                 }
-                
+
                 _guessedWord = sb.toString();
             } else {
                 _lives--;
@@ -108,12 +119,24 @@ public class HangmanGameEngine {
                 errorMessage = _lives == 0 ? "There are no remaining lives" : "There are no remaining guesses";
             }
 
+            this.Notify();
             return GuessResult.BuildSuccessFul(this).SetErrorMessage(errorMessage);
-            
+
         } catch (Exception exception) {
             //log.Error("There was an error when trying to guess the word", exception);
             return GuessResult.BuildFailed("There was an error when trying to guess the word. Character entered: " + characterAsString, this, true);
         }
     }
 
+    @Override
+    public void Attach(IObserver observer) {
+        _observers.add(observer);
+    }
+
+    @Override
+    public void Notify() {
+        for (IObserver observer : _observers) {
+            observer.update();
+        }
+    }
 }

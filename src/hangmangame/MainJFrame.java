@@ -42,7 +42,7 @@ public class MainJFrame extends javax.swing.JFrame {
         _mediator.AttachStartButton(jButtonStart);
         _mediator.AttachMainFrame(this);
 
-        InitializeKeyboardControl();
+        this.InitializeKeyboardControl();
 
         _mediator.SetInitialState();
     }
@@ -52,7 +52,6 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     public void DisableKeyboard() {
-
         for (JButton button : _buttons) {
             button.setEnabled(false);
         }
@@ -64,9 +63,8 @@ public class MainJFrame extends javax.swing.JFrame {
         }
     }
 
-    //Creation of keyboard is from stackoverflow
-    //https://stackoverflow.com/questions/24622279/laying-out-a-keyboard-in-swing/24625704
-    //I added the action listeners to each button
+    //The creation of keyboard was taken from below link, I added the action listeners to each button.
+    //https://stackoverflow.com/questions/24622279/laying-out-a-keyboard-in-swing/24625704    
     private void InitializeKeyboardControl() {
         jPanelKeyboard.setLayout(new GridBagLayout());
 

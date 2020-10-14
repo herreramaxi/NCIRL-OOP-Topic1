@@ -1,6 +1,6 @@
 
-import hangmangame.GuessResult;
-import hangmangame.HangmanGameEngine;
+import hangmangame.Engine.GuessResult;
+import hangmangame.Engine.HangmanGameEngine;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
