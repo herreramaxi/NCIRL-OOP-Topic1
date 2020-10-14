@@ -7,7 +7,7 @@ package hangmangame;
 
 /**
  *
- * @author user
+ * @author Maximiliano Herrera
  */
 public class GuessResult {
 

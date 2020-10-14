@@ -5,22 +5,16 @@
  */
 package hangmangame;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
- * @author user
+ * @author Maximiliano Herrera
  */
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -53,6 +47,26 @@ public class MainJFrame extends javax.swing.JFrame {
         _mediator.SetInitialState();
     }
 
+    public void ShowMessageDialog(String message) {
+        JOptionPane.showMessageDialog(this, message);
+    }
+
+    public void DisableKeyboard() {
+
+        for (JButton button : _buttons) {
+            button.setEnabled(false);
+        }
+    }
+
+    public void EnableKeyboard() {
+        for (JButton button : _buttons) {
+            button.setEnabled(true);
+        }
+    }
+
+    //Creation of keyboard is from stackoverflow
+    //https://stackoverflow.com/questions/24622279/laying-out-a-keyboard-in-swing/24625704
+    //I added the action listeners to each button
     private void InitializeKeyboardControl() {
         jPanelKeyboard.setLayout(new GridBagLayout());
 
@@ -70,15 +84,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 JButton button = new JButton(key[row][col]);
                 _buttons.add(button);
 
-//                button.addActionListener(new ActionListener() {
-//         public void actionPerformed(ActionEvent ae) {
-//            if (!textField.getText().equals(""))
-//               button.setText(textField.getText());
-//         }
-//      });
                 button.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        // keyButtonPressedActionEvent(evt);
                         JButton button = (JButton) evt.getSource();
 
                         if (button == null) {
@@ -100,24 +107,6 @@ public class MainJFrame extends javax.swing.JFrame {
         }
     }
 
-    private void keyButtonPressedActionEvent(java.awt.event.ActionEvent evt) {
-        JButton button = (JButton) evt.getSource();
-
-        if (button == null) {
-            return;
-        }
-
-        String text = button.getText();
-
-        _mediator.GuessLetter(text.charAt(0));
-
-        button.setEnabled(false);
-    }
-
-    public void ShowMessageDialog(String message) {
-        JOptionPane.showMessageDialog(this, message);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -136,7 +125,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jButtonStart = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Hangman game");
+        setTitle("Hangman");
 
         jPanelKeyboard.setName("keyboard panel"); // NOI18N
 
@@ -274,18 +263,4 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldGuesses;
     private javax.swing.JTextField jTextFieldLives;
     // End of variables declaration//GEN-END:variables
-
-    void DisableKeyboard() {
-
-        for (JButton button : _buttons) {
-            button.setEnabled(false);
-        }
-    }
-
-    void EnableKeyboard() {
-        for (JButton button : _buttons) {
-            button.setEnabled(true);
-        }
-    }
-
 }

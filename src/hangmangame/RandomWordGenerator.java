@@ -9,7 +9,7 @@ import java.util.Random;
 
 /**
  *
- * @author user
+ * @author Maximiliano Herrera
  */
 public class RandomWordGenerator {
 

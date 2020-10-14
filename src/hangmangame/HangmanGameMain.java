@@ -5,11 +5,9 @@
  */
 package hangmangame;
 
-import java.util.Scanner;
-
 /**
  *
- * @author user
+ * @author Maximiliano Herrera
  */
 public class HangmanGameMain {
 
@@ -25,11 +23,5 @@ public class HangmanGameMain {
                 new MainJFrame(mediator).setVisible(true);
             }
         });
-        //        MainJFrame main = new MainJFrame(mediator);
-        //        main.show();
-
-        //
-        //        GameMediator mediator = new GameMediator(scanner);
-        //        mediator.Play();
     }
 }

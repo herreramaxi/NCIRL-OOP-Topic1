@@ -7,7 +7,7 @@ package hangmangame;
 
 /**
  *
- * @author user
+ * @author Maximiliano Herrera
  */
 public class HangmanGameEngine {
 
@@ -109,6 +109,7 @@ public class HangmanGameEngine {
             }
 
             return GuessResult.BuildSuccessFul(this).SetErrorMessage(errorMessage);
+            
         } catch (Exception exception) {
             //log.Error("There was an error when trying to guess the word", exception);
             return GuessResult.BuildFailed("There was an error when trying to guess the word. Character entered: " + characterAsString, this, true);
